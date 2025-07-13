@@ -163,9 +163,8 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 
-createStars(300);
+createStars(200);
 animateStars();
-
 
 // 📱 Mobile Nav Toggle
 function toggleMenu() {
@@ -173,12 +172,10 @@ function toggleMenu() {
   nav.classList.toggle("hidden");
 }
 
-
 // 📬 Contact Form Handler + Toast
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
   const toast = document.getElementById('toast');
-  const sendBtn = document.getElementById('send-btn');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -208,15 +205,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       form.reset();
 
-      // ✅ Position the toast above the send button
-      const btnRect = sendBtn.getBoundingClientRect();
-      const formRect = form.getBoundingClientRect();
-
-      toast.style.top = `${btnRect.top - formRect.top - 40}px`;
-      toast.style.left = `${btnRect.left - formRect.left}px`;
-
+      // ✅ Show toast with no manual positioning
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 4000);
+
     } catch (err) {
       alert("❌ Something went wrong. Try again later.");
     }
