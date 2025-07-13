@@ -46,7 +46,7 @@ let shootingStars = [];
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
-    canvas.height = document.body.scrollHeight;
+    canvas.height = window.innerHeight;
   }
   
 resizeCanvas();
@@ -160,3 +160,8 @@ function animateStars() {
 
 createStars(300);
 animateStars();
+
+function toggleMenu() {
+  const nav = document.getElementById("nav-menu");
+  nav.classList.toggle("hidden");
+}
