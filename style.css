@@ -592,3 +592,17 @@
   pointer-events: auto;
 }
 
+/* ✅ Responsive fix for social buttons */
+@media (max-width: 600px) {
+  .contact-info-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .social-btn {
+    flex: 1 1 100%;
+    justify-content: center;
+    min-width: auto;
+    text-align: center;
+  }
+}
