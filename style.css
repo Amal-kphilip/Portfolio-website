@@ -569,9 +569,6 @@
 
 .toast {
   position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: var(--accent-color);
   color: #000;
   padding: 10px 20px;

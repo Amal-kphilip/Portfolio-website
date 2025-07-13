@@ -1,4 +1,3 @@
-
 // 🔁 Scroll Spy
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-links a');
@@ -6,9 +5,10 @@ const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    const sectionHeight = section.clientHeight;
-    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+
+    if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
       current = section.getAttribute('id');
     }
   });
@@ -21,10 +21,13 @@ window.addEventListener('scroll', () => {
   });
 });
 
+
 // ✨ Scroll Reveal
 const revealElements = document.querySelectorAll('.scroll-reveal');
+
 const revealOnScroll = () => {
   const triggerBottom = window.innerHeight * 0.85;
+
   revealElements.forEach(el => {
     const boxTop = el.getBoundingClientRect().top;
     if (boxTop < triggerBottom) {
@@ -34,8 +37,10 @@ const revealOnScroll = () => {
     }
   });
 };
+
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
+
 
 // 🌌 Milky Way Starfield Background
 const canvas = document.getElementById("starfield");
@@ -45,17 +50,16 @@ let stars = [];
 let shootingStars = [];
 
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 function createStars(count) {
   stars = [];
   const colors = ["#ffffff", "#49c5b6", "#aad1f3", "#ccc1ff", "#ffe9fc"];
-
 
   for (let i = 0; i < count; i++) {
     stars.push({
@@ -136,6 +140,7 @@ function moveStars() {
   stars.forEach((star) => {
     star.y += star.velocity;
     star.x += mouseX * 0.3;
+
     if (star.y > canvas.height) {
       star.y = 0;
       star.x = Math.random() * canvas.width;
@@ -161,22 +166,26 @@ function animateStars() {
 createStars(300);
 animateStars();
 
+
+// 📱 Mobile Nav Toggle
 function toggleMenu() {
   const nav = document.getElementById("nav-menu");
   nav.classList.toggle("hidden");
 }
 
+
+// 📬 Contact Form Handler + Toast
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
   const toast = document.getElementById('toast');
+  const sendBtn = document.getElementById('send-btn');
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // stop normal form submission
+    e.preventDefault();
 
     let hasError = false;
     const fields = form.querySelectorAll('input[required], textarea[required]');
 
-    // Simple client-side validation
     fields.forEach(field => {
       if (!field.value.trim()) {
         field.classList.add('shake');
@@ -187,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (hasError) return;
 
-    // Send to FormSubmit manually via Fetch API
     const formData = new FormData(form);
     try {
       await fetch("https://formsubmit.co/ajax/amalkphilip2005@gmail.com", {
@@ -199,6 +207,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       form.reset();
+
+      // ✅ Position the toast above the send button
+      const btnRect = sendBtn.getBoundingClientRect();
+      const formRect = form.getBoundingClientRect();
+
+      toast.style.top = `${btnRect.top - formRect.top - 40}px`;
+      toast.style.left = `${btnRect.left - formRect.left}px`;
+
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 4000);
     } catch (err) {
