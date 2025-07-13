@@ -102,18 +102,17 @@
       <h2>Contact Me</h2>
       <p>If you'd like to get in touch, feel free to send me a message!</p>
   
-     <form class="contact-form" id="contactForm">
+<form class="contact-form" id="contactForm">
   <input type="text" name="name" placeholder="Your Name" required />
   <input type="email" name="email" placeholder="Your Email" required />
   <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
 
-  <!-- Hidden settings for FormSubmit -->
-  <input type="hidden" name="_subject" value="New Message from Portfolio Site!" />
-  <input type="hidden" name="_template" value="box" />
-  <input type="hidden" name="_captcha" value="false" />
-
   <button type="submit">Send Message</button>
+
+  <!-- ✅ Toast inside form, right under the button -->
+  <div id="toast" class="toast">✅ Message Sent!</div>
 </form>
+
 
 <!-- ✅ Toast Message -->
 <div id="toast" class="toast">✅ Message Sent!</div>
