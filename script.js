@@ -165,3 +165,44 @@ function toggleMenu() {
   const nav = document.getElementById("nav-menu");
   nav.classList.toggle("hidden");
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  const toast = document.getElementById('toast');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // stop normal form submission
+
+    let hasError = false;
+    const fields = form.querySelectorAll('input[required], textarea[required]');
+
+    // Simple client-side validation
+    fields.forEach(field => {
+      if (!field.value.trim()) {
+        field.classList.add('shake');
+        hasError = true;
+        setTimeout(() => field.classList.remove('shake'), 400);
+      }
+    });
+
+    if (hasError) return;
+
+    // Send to FormSubmit manually via Fetch API
+    const formData = new FormData(form);
+    try {
+      await fetch("https://formsubmit.co/ajax/amalkphilip2005@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      form.reset();
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    } catch (err) {
+      alert("❌ Something went wrong. Try again later.");
+    }
+  });
+});
