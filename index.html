@@ -72,7 +72,7 @@
         <h3>Portfolio Website</h3>
         <p>A responsive personal portfolio built using HTML, CSS, and JavaScript. Includes galaxy animation.</p>
         <a href="https://github.com/Amal-kphilip/Portfolio-website" target="_blank" class="project-link">GitHub Repo</a>
-        <a href="https://youtu.be/zL1mCSd2sQE" target="_blank" class="project-link">Demo Video</a>
+        <a href="#" class="project-link" id="openVideo">Demo Video</a>
       </div>
 
       <!-- ⚠️ Project 2 with Typing Effect -->
@@ -131,7 +131,18 @@
 
     </div>
   </section>
-  
   <script src="script.js"></script>
+
+  <!-- ✅ Video Modal -->
+<div id="videoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <video controls id="demoVideo">
+      <source src="videos/portfolio-demo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
 </body>
 </html>

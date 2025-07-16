@@ -214,3 +214,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// 🎬 Modal Video Logic
+const openBtn = document.getElementById('openVideo');
+const modal = document.getElementById('videoModal');
+const closeBtn = document.getElementById('closeModal');
+const video = document.getElementById('demoVideo');
+
+if (openBtn && modal && closeBtn && video) {
+  openBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.style.display = 'flex';
+    video.currentTime = 0;
+    video.play();
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+    video.pause();
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      video.pause();
+    }
+  });
+}
