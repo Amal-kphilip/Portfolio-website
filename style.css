@@ -630,10 +630,11 @@
   position: relative;
 }
 
-.modal-content video {
+.modal-content iframe {
   width: 100%;
-  height: auto;
+  height: 400px;
   border-radius: 8px;
+  border: none;
 }
 
 .close-btn {
